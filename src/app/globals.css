@@ -1,26 +1,195 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --paper: #f1f3ec;
+  --paper-raised: #fbfbf7;
+  --ink: #1b2430;
+  --ink-soft: #5b6472;
+  --ink-faint: #8b9198;
+  --money: #1f7a5c;
+  --money-deep: #14543e;
+  --money-tint: #e3efe8;
+  --cost: #b5622b;
+  --cost-tint: #f4e6da;
+  --hairline: #c9ccc4;
+  --hairline-soft: #dfe2d8;
+  --focus-ring: #1f7a5c;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --paper: #14181c;
+    --paper-raised: #1b2026;
+    --ink: #eceee6;
+    --ink-soft: #a7adae;
+    --ink-faint: #737a7c;
+    --money: #3fb98a;
+    --money-deep: #6ad4a8;
+    --money-tint: #1c2f28;
+    --cost: #e0904f;
+    --cost-tint: #2e2318;
+    --hairline: #2b3238;
+    --hairline-soft: #232a30;
   }
 }
 
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-raised: var(--paper-raised);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-faint: var(--ink-faint);
+  --color-money: var(--money);
+  --color-money-deep: var(--money-deep);
+  --color-money-tint: var(--money-tint);
+  --color-cost: var(--cost);
+  --color-cost-tint: var(--cost-tint);
+  --color-hairline: var(--hairline);
+  --color-hairline-soft: var(--hairline-soft);
+  --font-display: var(--font-fraunces);
+  --font-body: var(--font-plex-sans);
+  --font-mono: var(--font-plex-mono);
+}
+
+* {
+  border-color: var(--hairline);
+}
+
+html {
+  color-scheme: light dark;
+}
+
+html {
+  overflow-x: hidden;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
+}
+
+button,
+select,
+input {
+  font: inherit;
+}
+
+::selection {
+  background: var(--money);
+  color: var(--paper-raised);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.font-tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- Receipt ---- */
+
+.receipt {
+  position: relative;
+  background: var(--paper-raised);
+  border: 1px solid var(--hairline);
+}
+
+.receipt::before,
+.receipt::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background-image: radial-gradient(circle at 10px 5px, var(--paper) 5px, transparent 5.5px);
+  background-size: 20px 10px;
+  background-repeat: repeat-x;
+}
+
+.receipt::before {
+  top: -1px;
+  transform: translateY(-50%);
+}
+
+.receipt::after {
+  bottom: -1px;
+  transform: translateY(50%);
+}
+
+.receipt-rule {
+  border-top: 1px dashed var(--hairline);
+}
+
+.receipt-rule-double {
+  border-top: 3px double var(--ink);
+}
+
+.receipt-line {
+  opacity: 0;
+  transform: translateY(4px);
+  animation: receipt-print 320ms ease-out forwards;
+}
+
+@keyframes receipt-print {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .receipt-line {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.tape-edge {
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    97% 96%,
+    94% 100%,
+    91% 96%,
+    88% 100%,
+    85% 96%,
+    82% 100%,
+    79% 96%,
+    76% 100%,
+    73% 96%,
+    70% 100%,
+    67% 96%,
+    64% 100%,
+    61% 96%,
+    58% 100%,
+    55% 96%,
+    52% 100%,
+    49% 96%,
+    46% 100%,
+    43% 96%,
+    40% 100%,
+    37% 96%,
+    34% 100%,
+    31% 96%,
+    28% 100%,
+    25% 96%,
+    22% 100%,
+    19% 96%,
+    16% 100%,
+    13% 96%,
+    10% 100%,
+    7% 96%,
+    4% 100%,
+    1% 96%,
+    0% 100%
+  );
 }

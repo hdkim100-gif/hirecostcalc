@@ -1,0 +1,8 @@
+# Google requires this file at the site root to verify who is authorized
+# to sell ad inventory on this domain (the "Authorized Digital Sellers" spec).
+#
+# Replace pub-0000000000000000 with your real AdSense publisher ID
+# (Account > Account information, in your AdSense dashboard) once you have
+# one. Until then this file has no effect and does not need to exist for
+# you to apply to AdSense.
+google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
