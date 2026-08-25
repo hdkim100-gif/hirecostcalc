@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Terms of Service",
   description:
     "Terms for using the HireCost employee cost calculator, including the limits of what its estimates mean.",
+  alternates: { canonical: "/terms" },
 };
 
 export default function TermsPage() {

@@ -1,7 +1,41 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Calculator from "@/components/Calculator";
 import { STATE_LIST } from "@/lib/tax-engine";
 import { slugify } from "@/lib/state-content";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
+
+const FAQ_ITEMS = [
+  {
+    q: "Why is the employer cost higher than the salary I offer?",
+    a: "Federal and state law require employers — not just employees — to pay their own share of Social Security, Medicare, and unemployment insurance on top of wages. Employer payroll taxes and optional benefits like health insurance or a 401(k) match can push the total cost meaningfully above salary alone — by how much depends on your state, your benefits, and your industry's workers' comp rate.",
+  },
+  {
+    q: "Is this the same as a paycheck or take-home pay calculator?",
+    a: "No. Paycheck calculators show what an employee takes home after their own withholding. HireCost shows the other side of the ledger: what the employer pays in addition to salary. They answer different questions.",
+  },
+  {
+    q: "Why does the FUTA rate differ by state?",
+    a: "The standard federal unemployment rate is 0.6%. But if a state's unemployment trust fund carries an unpaid federal loan balance, the U.S. Department of Labor reduces that state's credit — raising the effective FUTA rate for every employer in it. California is expected to remain a credit-reduction state for 2026, and this calculator includes that projection — but the DOL doesn't finalize each year's credit-reduction states and rates until after November 10, so treat that line as an estimate until then.",
+  },
+  {
+    q: "How accurate is the Hiring Budget number?",
+    a: "It solves for the salary whose fully-loaded monthly cost matches your budget, using the same mandatory tax rates as the calculator above. It's an estimate for a new employer, one hire at a time — not a substitute for a quote from your payroll provider or accountant.",
+  },
+];
+
+const FAQ_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQ_ITEMS.map(({ q, a }) => ({
+    "@type": "Question",
+    name: q,
+    acceptedAnswer: { "@type": "Answer", text: a },
+  })),
+};
 
 export default function Home() {
   return (
@@ -85,42 +119,19 @@ export default function Home() {
         <div className="mx-auto max-w-3xl px-6 py-16">
           <h2 className="font-display text-2xl text-ink">Common questions</h2>
           <div className="mt-8 space-y-8">
-            <Faq q="Why is the employer cost higher than the salary I offer?">
-              Federal and state law require employers &mdash; not just
-              employees &mdash; to pay their own share of Social Security,
-              Medicare, and unemployment insurance on top of wages. Employer
-              payroll taxes and optional benefits like health insurance or a
-              401(k) match can push the total cost meaningfully above salary
-              alone &mdash; by how much depends on your state, your
-              benefits, and your industry&rsquo;s workers&rsquo; comp rate.
-            </Faq>
-            <Faq q="Is this the same as a paycheck or take-home pay calculator?">
-              No. Paycheck calculators show what an employee takes home after
-              their own withholding. HireCost shows the other side of the
-              ledger: what the employer pays in addition to salary. They
-              answer different questions.
-            </Faq>
-            <Faq q="Why does the FUTA rate differ by state?">
-              The standard federal unemployment rate is 0.6%. But if a
-              state&rsquo;s unemployment trust fund carries an unpaid federal
-              loan balance, the U.S. Department of Labor reduces that
-              state&rsquo;s credit &mdash; raising the effective FUTA rate for
-              every employer in it. California is expected to remain a
-              credit-reduction state for 2026, and this calculator includes
-              that projection &mdash; but the DOL doesn&rsquo;t finalize each
-              year&rsquo;s credit-reduction states and rates until after
-              November 10, so treat that line as an estimate until then.
-            </Faq>
-            <Faq q="How accurate is the Hiring Budget number?">
-              It solves for the salary whose fully-loaded monthly cost
-              matches your budget, using the same mandatory tax rates as the
-              calculator above. It&rsquo;s an estimate for a new employer, one
-              hire at a time &mdash; not a substitute for a quote from your
-              payroll provider or accountant.
-            </Faq>
+            {FAQ_ITEMS.map(({ q, a }) => (
+              <Faq key={q} q={q}>
+                {a}
+              </Faq>
+            ))}
           </div>
         </div>
       </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_JSON_LD) }}
+      />
     </>
   );
 }

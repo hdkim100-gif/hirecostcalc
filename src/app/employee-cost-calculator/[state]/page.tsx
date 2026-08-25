@@ -22,6 +22,7 @@ export async function generateMetadata({
   return {
     title: `Employee Cost Calculator: ${state.name} (${state.year})`,
     description: `See the true cost of hiring an employee in ${state.name}, including employer payroll taxes, SUI, FUTA, and optional benefits. Free calculator, no sign-up.`,
+    alternates: { canonical: `/employee-cost-calculator/${slug}` },
   };
 }
 

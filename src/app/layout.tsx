@@ -35,10 +35,34 @@ export const metadata: Metadata = {
   description:
     "See the true annual cost of hiring an employee in your state — salary plus employer payroll taxes and benefits, in one number. Free, no sign-up.",
   openGraph: {
+    siteName: "HireCost",
     title: "HireCost — What an Employee Really Costs",
     description:
       "Salary is the sticker price. See the real bill: employer payroll taxes, benefits, and total cost per hire, by state.",
     type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "HireCost — What an Employee Really Costs",
+    description:
+      "Salary is the sticker price. See the real bill: employer payroll taxes, benefits, and total cost per hire, by state.",
+  },
+};
+
+const WEB_APPLICATION_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "HireCost",
+  url: "https://hirecostcalc.com",
+  description:
+    "Free calculator for the fully-loaded cost of hiring an employee in the US, including employer payroll taxes and optional benefits, by state.",
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Any",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
   },
 };
 
@@ -62,6 +86,10 @@ export default function RootLayout({
       <body
         className={`${fraunces.variable} ${plexSans.variable} ${plexMono.variable} antialiased`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(WEB_APPLICATION_JSON_LD) }}
+        />
         <div className="flex min-h-screen flex-col">
           <SiteHeader />
           <main className="flex-1">{children}</main>

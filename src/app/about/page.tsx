@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "About",
   description:
     "Why HireCost exists: a free calculator that shows small business owners the true, fully-loaded cost of hiring an employee in the US.",
+  alternates: { canonical: "/about" },
 };
 
 export default function AboutPage() {

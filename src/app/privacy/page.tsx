@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
     "What HireCost does and doesn't collect: calculator inputs never leave your device; standard site analytics and advertising cookies are covered here.",
+  alternates: { canonical: "/privacy" },
 };
 
 export default function PrivacyPage() {
