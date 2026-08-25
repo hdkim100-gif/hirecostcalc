@@ -75,6 +75,7 @@ export function slugify(name: string): string {
 function generateContent(state: StateTaxYear): StateSlugContent {
   const futaRate = effectiveFutaRate(state);
   const futaIsStandard = state.futaCreditReduction.addonRate === 0;
+  const isVerified = Boolean(state.sui.source);
 
   const facts = [
     `New-employer SUI: ${(state.sui.newEmployerRate * 100).toFixed(2).replace(/\.?0+$/, "")}% on the first $${state.sui.wageBase.toLocaleString()} of wages.`,
@@ -84,16 +85,27 @@ function generateContent(state: StateTaxYear): StateSlugContent {
     state.hasIncomeTax
       ? "State income tax is withheld from the employee's wages, not paid directly by the employer."
       : "No state income tax, for either employer or employee.",
+    isVerified
+      ? `This rate was checked directly against the ${state.sui.source}, current as of ${state.asOf}.`
+      : `This rate is compiled from multi-state payroll compliance roundups rather than confirmed directly with ${state.name}'s labor agency yet — treat it as a starting estimate.`,
   ];
+
+  const intro = state.hasIncomeTax
+    ? `${state.name} withholds state income tax from employee pay, but that's not an employer cost. What actually lands on the employer side is federal Social Security and Medicare plus ${state.name}'s own unemployment insurance rate and wage base. Below is a ${state.year} estimate for a $60,000 hire, and the full calculator to run your own numbers.`
+    : `${state.name} has no state income tax, so the employer-side bill is simpler than in most states: federal Social Security and Medicare plus ${state.name}'s unemployment insurance rate and wage base. Below is a ${state.year} estimate for a $60,000 hire, and the full calculator to run your own numbers.`;
+
+  const caution =
+    state.sui.note ??
+    (isVerified
+      ? `New-employer unemployment rates are reset yearly and can vary by industry — confirm your assigned rate on your ${state.sui.source} notice before budgeting.`
+      : `New-employer unemployment rates change yearly and can vary by industry — confirm your assigned rate with ${state.name}'s labor or workforce agency before budgeting.`);
 
   return {
     slug: slugify(state.name),
     code: state.code,
-    intro: `${state.name}'s mandatory employer payroll costs come from federal Social Security and Medicare, plus this state's own unemployment insurance rate and wage base. Below is a ${state.year} estimate for a $60,000 hire, and the full calculator to run your own numbers.`,
+    intro,
     facts,
-    caution:
-      state.sui.note ??
-      `New-employer unemployment rates change yearly and can vary by industry — confirm your assigned rate with ${state.name}'s labor or workforce agency before budgeting.`,
+    caution,
   };
 }
 
