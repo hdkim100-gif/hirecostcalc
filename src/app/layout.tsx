@@ -32,6 +32,9 @@ export const metadata: Metadata = {
     default: "HireCost — What an Employee Really Costs",
     template: "%s | HireCost",
   },
+  verification: {
+    other: { "msvalidate.01": "5FC60ED27670E0DEEFCBACADA9EC39DA" },
+  },
   description:
     "See the true annual cost of hiring an employee in your state — salary plus employer payroll taxes and benefits, in one number. Free, no sign-up.",
   openGraph: {
