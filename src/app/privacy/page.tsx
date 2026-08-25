@@ -13,8 +13,7 @@ export default function PrivacyPage() {
       <p>
         HireCost (&ldquo;we,&rdquo; &ldquo;us&rdquo;) publishes this policy to
         explain what happens to your data when you use{" "}
-        <strong>hirecost.example.com</strong>. Replace this domain with your
-        live one before publishing.
+        <strong>hirecostcalc.com</strong>.
       </p>
 
       <h2>The calculator itself</h2>
@@ -102,7 +101,7 @@ export default function PrivacyPage() {
 
       <h2>Contact</h2>
       <p>
-        Questions about this policy: <a href="mailto:hello@hirecost.example.com">hello@hirecost.example.com</a>.
+        Questions about this policy: <a href="mailto:contact@hirecostcalc.com">contact@hirecostcalc.com</a>.
       </p>
     </LegalPage>
   );

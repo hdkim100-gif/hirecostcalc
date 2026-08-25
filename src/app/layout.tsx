@@ -27,7 +27,7 @@ const plexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://hirecost.example.com"),
+  metadataBase: new URL("https://hirecostcalc.com"),
   title: {
     default: "HireCost — What an Employee Really Costs",
     template: "%s | HireCost",

@@ -11,9 +11,8 @@ export default function TermsPage() {
   return (
     <LegalPage eyebrow="Legal" title="Terms of Service" updated="2026-08-25">
       <p>
-        By using hirecost.example.com (&ldquo;HireCost,&rdquo; &ldquo;the
-        site&rdquo;), you agree to the terms below. Replace this domain with
-        your live one before publishing.
+        By using hirecostcalc.com (&ldquo;HireCost,&rdquo; &ldquo;the
+        site&rdquo;), you agree to the terms below.
       </p>
 
       <h2>Estimates only</h2>
@@ -60,7 +59,7 @@ export default function TermsPage() {
 
       <h2>Contact</h2>
       <p>
-        <a href="mailto:hello@hirecost.example.com">hello@hirecost.example.com</a>
+        <a href="mailto:contact@hirecostcalc.com">contact@hirecostcalc.com</a>
       </p>
     </LegalPage>
   );

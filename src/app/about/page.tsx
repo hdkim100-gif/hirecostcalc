@@ -47,7 +47,7 @@ export default function AboutPage() {
       <h2>Get in touch</h2>
       <p>
         Found a rate that looks wrong, or a state you&rsquo;d like added?
-        Email <a href="mailto:hello@hirecost.example.com">hello@hirecost.example.com</a>.
+        Email <a href="mailto:contact@hirecostcalc.com">contact@hirecostcalc.com</a>.
       </p>
     </LegalPage>
   );

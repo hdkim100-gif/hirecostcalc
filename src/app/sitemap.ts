@@ -3,7 +3,7 @@ import { allStateSlugs } from "@/lib/state-content";
 
 export const dynamic = "force-static";
 
-const BASE_URL = "https://hirecost.example.com";
+const BASE_URL = "https://hirecostcalc.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
