@@ -8,6 +8,9 @@ const BASE_URL = "https://hirecostcalc.com";
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: BASE_URL, changeFrequency: "monthly", priority: 1 },
+    { url: `${BASE_URL}/methodology`, changeFrequency: "monthly" as const, priority: 0.9 },
+    { url: `${BASE_URL}/employee-cost-by-state`, changeFrequency: "monthly" as const, priority: 0.9 },
+    { url: `${BASE_URL}/salary-vs-employer-cost`, changeFrequency: "monthly" as const, priority: 0.8 },
     ...allStateSlugs().map((slug) => ({
       url: `${BASE_URL}/employee-cost-calculator/${slug}`,
       changeFrequency: "monthly" as const,

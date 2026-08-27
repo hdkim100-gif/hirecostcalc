@@ -100,7 +100,14 @@ export default function Home() {
         <p className="mt-2 max-w-lg text-sm text-ink-soft">
           Payroll tax rules differ by state &mdash; unemployment insurance
           rates, wage bases, and in some years, federal credit reductions.
-          Start from your state for the full picture.
+          Start from your state for the full picture, or see the{" "}
+          <Link
+            href="/employee-cost-by-state"
+            className="text-money underline decoration-hairline underline-offset-2 hover:decoration-money"
+          >
+            full 50-state comparison
+          </Link>
+          .
         </p>
         <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-1 sm:grid-cols-3 lg:grid-cols-4">
           {STATE_LIST.map((s) => (
